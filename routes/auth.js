@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { User } = require('../models/User')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 //register
 router.post("/register", async (req, res)=>{
@@ -22,19 +23,48 @@ router.post("/register", async (req, res)=>{
     }
 })
 
-router.post('/login', async(req,res)=>{
-    try{
-        const user = await User.findOne({email:req.body.email});
-        !user && res.status(404).send('user not found');
-
-        const validPassword = await bcrypt.compare(req.body.password, user.password);
-        !validPassword && res.status(400).json('wrong password')
-
-        res.status(200).json(user)
-    } catch(err){
-        res.status(500).json(err)
-    }
-
-});
+router.post('/login', (req, res, next) => {
+    let getUser;
+    User
+    .findOne({
+        email: req.body.email
+    })
+    .then((user) => {
+        if(!user) {
+            return res.status(401).json({
+                message: 'Authentication failed',
+            });
+        }
+        getUser = user;
+        return bcrypt.compare(req.body.password, user.password);
+    })
+    .then((response) => {
+        if (!response) {
+            return res.status(401).json({
+                message: 'Authentication failed'
+            });
+        }
+        let jwttoken = jwt.sign(
+            {
+                email: getUser.email,
+                userId: getUser._id,
+            },
+            'longer-secret-is-better',
+            {
+                expiresIn: '1h',
+            }
+        );
+        res.status(200).json({
+            token: jwttoken,
+            expiresIn: 3600,
+            msg: getUser,
+        });
+    })
+    .catch((err) => {
+        return res.status(401).json({
+            message: 'Authentication failed',
+        });
+    });
+}),
 
 module.exports = router

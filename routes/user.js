@@ -96,4 +96,14 @@ router.put("/:id/unfollow", async (req, res) => {
   }
 });
 
+router.get("/", async  (req,res)=>{
+  User.find((error, response) =>{
+    if(error){
+      return next(error)
+    } else {
+        res.status(200).json(response)
+    }
+  })
+})
+
 module.exports = router
