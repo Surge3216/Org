@@ -1,10 +1,14 @@
 import { Button, Form } from 'semantic-ui-react';
+import React, { useContext } from 'react';
 
+import { AuthContext } from '../../context/auth';
 import { useForm } from '../../util/hooks';
 
 import axios from 'axios'
 
 export default function Login(props) {
+  const context = useContext(AuthContext);
+
   const { onChange, onSubmit, values } = useForm(loginUserCallback, {
     email: '',
     password: ''
@@ -21,9 +25,10 @@ export default function Login(props) {
 
     axios.post('http://localhost:8080/api/auth/login', userData)
     .then(function(response){
-      
-      console.log(response)
-  
+      const userInfo = response.data
+      console.log(userInfo)
+      context.login(userInfo);
+      props.history.push('/');
     })
     .catch(err => {
       console.log(err);
