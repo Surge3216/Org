@@ -15,7 +15,7 @@ if (localStorage.getItem('jwtToken')) {
   }
 }
 
-const AuthContext = createContext({
+const UserContext = createContext({
   user: null,
   login: (userInfo) => {},
   logout: () => {}
@@ -42,7 +42,8 @@ function AuthProvider(props) {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   function login(userInfo) {
-    localStorage.setItem('jwtToken', userInfo.token);
+    console.log(userInfo)
+    localStorage.setItem('jwtToken', userInfo.token); 
     dispatch({
       type: 'LOGIN',
       payload: userInfo
@@ -55,11 +56,11 @@ function AuthProvider(props) {
   }
 
   return (
-    <AuthContext.Provider
+    <UserContext.Provider
       value={{ user: state.user, login, logout }}
       {...props}
     />
   );
 }
 
-export { AuthContext, AuthProvider };
+export { UserContext, AuthProvider };

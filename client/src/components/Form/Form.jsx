@@ -1,62 +1,90 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button, Form } from 'semantic-ui-react';
-import axios from 'axios';
+import axios from 'axios'
+
+
+import { UserContext } from '../../context/auth';
 import { useForm } from '../../util/hooks';
 
+function Register(props) {
+  const context = useContext(UserContext);
 
-export default function SignUp(props){
-  const { onChange, onSubmit, values } = useForm(registerUserCallback, {
+  const { onChange, onSubmit, values } = useForm(registerUser, {
     username: '',
     email: '',
-    password: ''
+    password: '',
   });
 
-  function registerUser(){
-    console.log(values)
-  axios.post('http://localhost:8080/api/auth/register', values)
-  .then(function(response){
-    props.history.push('/');
-  }).catch(err => {
-    console.log(err)
+  function addUser(){
+    const userData ={
+      username: values.username,
+      email: values.email,
+      password: values.password
+    }
+
+    console.log(userData)
+
+    axios.post('http://localhost:8080/api/auth/register', userData)
+    .then(function(response){
+      const userLog = {
+        email: response.data.email,
+        password: userData.password
+      }
+      axios.post('http://localhost:8080/api/auth/login', userLog)
+      .then(function(response){
+        const userInfo = response.data
+        console.log(userInfo)
+        context.login(userInfo);
+        props.history.push('/');
+      })
+      .catch(err => {
+        console.log(err);
+    })
+    })
+    .catch(err => {
+      console.log(err);
   })
-  
-}
-  function registerUserCallback() {
-    registerUser();
+
   }
-  return(
-  <Form onSubmit={onSubmit} noValidate>
-  <Form.Field>
-    <label>Username</label>
-    <input label="Username"
-         placeholder="Username.."
-         name="username"
-         type="text"
-         value={values.username}
-         onChange={onChange}/>
-  </Form.Field>
-  <Form.Field>
-    <label>Email</label>
-    <input label="Email"
-         placeholder="Email.."
-         name="email"
-         type="text"
-         value={values.email}
-         onChange={onChange}/>
-  </Form.Field>
-  <Form.Field>
-    <label>Password</label>
-    <input label="Password"
+
+  function registerUser() {
+    addUser();
+  }
+
+  return (
+    <div className="form-container">
+      <Form onSubmit={onSubmit} noValidate>
+        <h1>Register</h1>
+        <Form.Input
+          label="Username"
+          placeholder="Username.."
+          name="username"
+          type="text"
+          value={values.username}
+          onChange={onChange}
+        />
+        <Form.Input
+          label="Email"
+          placeholder="Email.."
+          name="email"
+          type="email"
+          value={values.email}
+          onChange={onChange}
+        />
+        <Form.Input
+          label="Password"
           placeholder="Password.."
           name="password"
           type="password"
           value={values.password}
-          onChange={onChange} />
-  </Form.Field>
-  <Button type='submit'>Submit</Button>
-</Form>
-  )
+          onChange={onChange}
+        />
+        <Button type="submit" primary>
+          Register
+        </Button>
+      </Form>
+    </div>
+  );
 }
- 
 
-
+export default Register;

@@ -1,15 +1,18 @@
-import { Header, Icon } from 'semantic-ui-react'
+import { useContext } from 'react';
+import { UserContext } from '../../context/auth';
+import Navbar from '../../components/Hero/index'
+import 'bulma/css/bulma.min.css';
+import { Button } from 'react-bulma-components';
+
 
 
 export default function Home() {
-    return (
+  const { user } = useContext(UserContext)
+
+
+  return (
         <div>
-           <div>
-    <Header as='h2' icon textAlign='center'>
-      <Icon name='users' circular />
-      <Header.Content>Friends</Header.Content>
-    </Header>
-  </div>
+          <Navbar />
         </div>
     )
 }

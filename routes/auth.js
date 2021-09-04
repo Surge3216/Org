@@ -47,6 +47,7 @@ router.post('/login', (req, res, next) => {
         let jwttoken = jwt.sign(
             {
                 email: getUser.email,
+                username: getUser.username,
                 userId: getUser._id,
             },
             'longer-secret-is-better',
@@ -56,7 +57,7 @@ router.post('/login', (req, res, next) => {
         );
         res.status(200).json({
             token: jwttoken,
-            expiresIn: 3600,
+            expiresIn: 1000,
             msg: getUser,
         });
     })
