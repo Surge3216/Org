@@ -40,6 +40,10 @@ const userSchema = new Schema({
         type: Boolean,
         default: false
     },
+    role:{
+        type: String,
+        default:""
+    },
     desc:{
         type:String,
         max:50

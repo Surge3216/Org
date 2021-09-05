@@ -1,0 +1,21 @@
+.bio{
+    margin: 10px !important;
+}
+.aboutMe{
+    background-color: white;
+    margin-bottom: 5px !important;
+    border-radius: 25px;
+    padding: 20px;
+}
+.top{
+    border-bottom-style: solid;
+}
+.box2{
+    width: 30pc !important;
+}
+.blk{
+    background-color: black !important;
+}
+.wht{
+    color: white !important;
+}

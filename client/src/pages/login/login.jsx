@@ -1,4 +1,4 @@
-import { Button, Form } from 'semantic-ui-react';
+import { Button, Form, Container } from 'semantic-ui-react';
 import React, { useContext } from 'react';
 
 import { UserContext } from '../../context/auth';
@@ -40,6 +40,7 @@ export default function Login(props) {
 
 
     return (
+      <Container>
       <div className="form-container">
       <Form onSubmit={onSubmit} noValidate >
           <Form.Input
@@ -64,5 +65,6 @@ export default function Login(props) {
         </Button>
   </Form>
   </div>
+  </Container>
     )
 }

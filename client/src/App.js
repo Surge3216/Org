@@ -6,6 +6,7 @@ import { Container } from 'semantic-ui-react';
 import {  BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import ProtectedRoute from "./context/protectedRoutes";
 import { AuthProvider } from "./context/auth";
+import 'bulma/css/bulma.min.css';
 
 
 function App() {

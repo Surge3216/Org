@@ -49,6 +49,7 @@ router.post('/login', (req, res, next) => {
                 email: getUser.email,
                 username: getUser.username,
                 userId: getUser._id,
+                role: getUser.role
             },
             'longer-secret-is-better',
             {
