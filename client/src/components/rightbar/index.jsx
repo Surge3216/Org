@@ -1,100 +1,25 @@
 import "./rightbar.css";
-import { UserContext } from '../../context/auth';
-import { useContext } from 'react';
 
-export default function Rightbar({ profile }) {
-  const { user } = useContext(UserContext)
-  const HomeRightbar = () => {
-    return (
-      <>
-        <div className="birthdayContainer">
-          <img className="birthdayImg" src="assets/gift.png" alt="" />
-          <span className="birthdayText">
-            <b>Pola Foster</b> and <b>3 other friends</b> have a birhday today.
-          </span>
-        </div>
-        <img className="rightbarAd" src="assets/ad.png" alt="" />
-        <h4 className="rightbarTitle">Online Friends</h4>
-      </>
-    );
-  };
-
-  const ProfileRightbar = () => {
-    return (
-      <>
-        <h4 className="rightbarTitle">User information</h4>
-        <div className="rightbarInfo">
-          <div className="rightbarInfoItem">
-            <span className="rightbarInfoKey">City:</span>
-            <span className="rightbarInfoValue">New York</span>
-          </div>
-          <div className="rightbarInfoItem">
-            <span className="rightbarInfoKey">From:</span>
-            <span className="rightbarInfoValue">Madrid</span>
-          </div>
-          <div className="rightbarInfoItem">
-            <span className="rightbarInfoKey">Relationship:</span>
-            <span className="rightbarInfoValue">Single</span>
-          </div>
-        </div>
-        <h4 className="rightbarTitle">User friends</h4>
-        <div className="rightbarFollowings">
-          <div className="rightbarFollowing">
-            <img
-              src="assets/person/1.jpeg"
-              alt=""
-              className="rightbarFollowingImg"
-            />
-            <span className="rightbarFollowingName">John Carter</span>
-          </div>
-          <div className="rightbarFollowing">
-            <img
-              src="assets/person/2.jpeg"
-              alt=""
-              className="rightbarFollowingImg"
-            />
-            <span className="rightbarFollowingName">John Carter</span>
-          </div>
-          <div className="rightbarFollowing">
-            <img
-              src="assets/person/3.jpeg"
-              alt=""
-              className="rightbarFollowingImg"
-            />
-            <span className="rightbarFollowingName">John Carter</span>
-          </div>
-          <div className="rightbarFollowing">
-            <img
-              src="assets/person/4.jpeg"
-              alt=""
-              className="rightbarFollowingImg"
-            />
-            <span className="rightbarFollowingName">John Carter</span>
-          </div>
-          <div className="rightbarFollowing">
-            <img
-              src="assets/person/5.jpeg"
-              alt=""
-              className="rightbarFollowingImg"
-            />
-            <span className="rightbarFollowingName">John Carter</span>
-          </div>
-          <div className="rightbarFollowing">
-            <img
-              src="assets/person/6.jpeg"
-              alt=""
-              className="rightbarFollowingImg"
-            />
-            <span className="rightbarFollowingName">John Carter</span>
-          </div>
-        </div>
-      </>
-    );
-  };
+export default function Rightbar() {
+  
   return (
-    <div className="rightbar">
+    <div className="rightbar red">
       <div className="rightbarWrapper">
-        {profile ? <ProfileRightbar /> : <HomeRightbar />}
+      < div className="">
+        <div className="birthdayContainer  ">
+        <section className="section is-small ">
+  <h1 className="title black has-text-centered">Survivors lane</h1>
+  <h2 className="subtitle has-text-left-desktop-only black ">
+    Fourteen players move into their new home excited to meet each other and begin the count down to Halloween,
+    but getting there may not be as easy as it seems. Rumors are spreading through the neighborhood, a mysterious
+    figure has been spotted in the night lurking in the neighbors gardens appearing in their surveillance cameras. So far the 
+    figures biggest crime has been vandalism but the fear can be felt amongst the thick fall breeze and with fourteen stranger moving
+    into the neighborhood no one feels safe. Can our players out smart the masked figure and keep them at bay till Halloween? Or is the killer
+    already one step ahead of them?
+  </h2>
+</section>
+</div>
+</div>
       </div>
     </div>
   );

@@ -1,0 +1,10 @@
+.hero{
+    background-color: grey;
+    display: flex !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 999 !important;
+}
+.black{
+    color: black !important;
+}

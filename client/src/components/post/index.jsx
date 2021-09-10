@@ -1,44 +1,48 @@
 import "./post.css";
+import React, { useContext, useEffect, useState  } from 'react';
 import { MoreVert } from "@material-ui/icons";
-import { Users } from "../../dummyData";
-import { useState } from "react";
+import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
+ 
+import { UserContext } from '../../context/auth';
+import axios from "axios";
 
-export default function Post({ post }) {
-  const [like,setLike] = useState(post.like)
-  const [isLiked,setIsLiked] = useState(false)
+export default function Post() {
+  const { user } = useContext(UserContext)
 
-  const likeHandler =()=>{
-    setLike(isLiked ? like-1 : like+1)
-    setIsLiked(!isLiked)
-  }
-  return (
-    <div className="post">
+  const [timelineData, setTimelineData] = useState([])
+
+  const url = `http://localhost:8080/api/posts/timeline/${user.userId}`
+  
+  useEffect(()=>{
+    axios.get(url)
+  .then(function(response){
+    setTimelineData(response.data)
+    console.log("Car")
+  }).catch(err => {
+    console.log(err);
+}, [ url ])
+  })
+
+  const timeline = timelineData.map((post)=>(
+    <div className="post" key={post._id} >
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
-            <img
-              className="postProfileImg"
-              src={Users.filter((u) => u.id === post?.userId)[0].profilePicture}
-              alt=""
-            />
             <span className="postUsername">
-              {Users.filter((u) => u.id === post?.userId)[0].username}
+              {post.username}
             </span>
-            <span className="postDate">{post.date}</span>
+            <span className="postDate">{post.createdAt}</span>
           </div>
           <div className="postTopRight">
             <MoreVert />
           </div>
         </div>
         <div className="postCenter">
-          <span className="postText">{post?.desc}</span>
-          <img className="postImg" src={post.photo} alt="" />
+          <span className="postText">{post.desc}</span>
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
-            <img className="likeIcon" src="assets/like.png" onClick={likeHandler} alt="" />
-            <img className="likeIcon" src="assets/heart.png" onClick={likeHandler} alt="" />
-            <span className="postLikeCounter">{like} people like it</span>
+            <div><ThumbUpAltIcon/> like </div>
           </div>
           <div className="postBottomRight">
             <span className="postCommentText">{post.comment} comments</span>
@@ -46,5 +50,12 @@ export default function Post({ post }) {
         </div>
       </div>
     </div>
+  ))
+
+  return (
+    <div>
+    {timeline}
+    </div>
+   
   );
 }

@@ -1,58 +1,42 @@
-import React, { Component } from "react";
-import photo from "./place.png"
+import React, { useEffect, useState} from 'react'
+import { Link } from "react-router-dom";
 import "./style.css"
+import axios from 'axios'
 
-export class Players extends Component {
-    render(){
-        return(
-            <div>
-                <div class="columns back">
-  <div class="column">
-    <img src={photo} />
-  </div>
-  <div class="column">
-  <img src={photo} />
-  </div>
-  <div class="column">
-  <img src={photo} />
-  </div>
-  <div class="column">
-  <img src={photo} />
-  </div>
-</div>
+export default function Players()  {
+  
+  const [bioData, setBioData] = useState([])
+  useEffect(()=>{
+    axios.get("http://localhost:8080/api/bio/players/all")
+    .then(function (response) {
+      setBioData(response.data)
+      console.log(response)
+    }).catch(err=>{
+      console.log(err);
+    })
+  }, [])
+  
 
-<div class="columns">
-  <div class="column">
-    <img src={photo} />
+const bioLink = bioData.map((bio)=>(
+  <div className="column is-4 has-text-centered" key={bio.userId}>
+    <figure className ="image is-90x120 ">
+      <img src={bio.img} alt={bio.username} />
+      <Link
+      to={`/confessionals/${bio.userId}`}
+      
+      >{bio.username}</Link>
+    </figure>
   </div>
-  <div class="column">
-  <img src={photo} />
-  </div>
-  <div class="column">
-  <img src={photo} />
-  </div>
-  <div class="column">
-  <img src={photo} />
-  </div>
-</div>
+))
 
-<div class="columns">
-  <div class="column">
-    <img src={photo} />
+
+
+return(
+  <div className="columns inst"> 
+  {bioLink}
   </div>
-  <div class="column">
-  <img src={photo} />
-  </div>
-  <div class="column">
-  <img src={photo} />
-  </div>
-  <div class="column">
-  <img src={photo} />
-  </div>
-</div>
-            </div>
-        )
-    }
+)
+  
+
+  
 };
-
-export default Players;

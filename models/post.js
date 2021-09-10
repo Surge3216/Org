@@ -7,9 +7,13 @@ const postSchema = new Schema(
       type: String,
       required: true,
     },
+    username: {
+      type: String,
+      required: true
+    },
     desc: {
       type: String,
-      max: 500,
+      max: 2000,
     },
     img: {
       type: String,
@@ -20,7 +24,13 @@ const postSchema = new Schema(
     },
     comments:{
       type: Array,
-      default: []
+      default: [
+        {
+          body: String,
+          username: String,
+          createdAt: String
+        }
+      ]
     }
   },
   { timestamps: true }

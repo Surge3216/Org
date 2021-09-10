@@ -70,14 +70,24 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-//get timeline posts
+//get a post
 
-router.get("/timeline/all", async (req, res) => {
+router.get("/them/all", async (req, res) => {
   try {
-    const currentUser = await User.findById(req.body.userId);
+    const post = await Post.find();
+    res.status(200).json(post);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+//get timeline posts
+router.get("/timeline/:id", async (req, res) => {
+  try {
+    const currentUser = await User.findById(req.params.id);
     const userPosts = await Post.find({ userId: currentUser._id });
     const friendPosts = await Promise.all(
-      currentUser.followings.map((friendId) => {
+      currentUser.following.map((friendId) => {
         return Post.find({ userId: friendId });
       })
     );
@@ -86,5 +96,28 @@ router.get("/timeline/all", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+//get player posts
+router.get("/player/timeline/:id", async (req, res) => {
+  try {
+    const currentUser = await User.findById(req.params.id);
+    const userPosts = await Post.find({ userId: currentUser._id });
+    res.json(userPosts)
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// post comment
+router.post("/:id/comment", async (req, res)=>{
+  try{
+    const post = await Post.findById(req.params.id)
+      post.comments.unshift(req.body)
+      const newComment = await post.save();
+      res.status(200).json(newComment)
+  }catch (err) {
+    res.status(500).json(err);
+  }
+})
 
 module.exports = router;

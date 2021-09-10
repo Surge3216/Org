@@ -1,8 +1,8 @@
-import { Button, Form, Container } from 'semantic-ui-react';
 import React, { useContext } from 'react';
 
 import { UserContext } from '../../context/auth';
 import { useForm } from '../../util/hooks';
+import kill from "./kill.png"
 
 import axios from 'axios'
 
@@ -25,6 +25,7 @@ export default function Login(props) {
     .then(function(response){
       const userInfo = response.data
       context.login(userInfo);
+      console.log(response, "hello loser")
       props.history.push('/');
     })
     .catch(err => {
@@ -40,31 +41,51 @@ export default function Login(props) {
 
 
     return (
-      <Container>
-      <div className="form-container">
-      <Form onSubmit={onSubmit} noValidate >
-          <Form.Input
-         label="Email"
-         placeholder="Email.."
-         name="email"
-         type="text"
-         value={values.email}
-         onChange={onChange}
-       />
-
-          <Form.Input
-          label="Password"
-          placeholder="Password.."
-          name="password"
-          type="password"
-          value={values.password}
-          onChange={onChange}
-        />
-   <Button type="submit" primary>
-          Login
-        </Button>
-  </Form>
+    <div className="hero is-fullheight is-primary">
+       <div className="hero-body">
+    <div className="container has-text-centered">
+      <div className="column is-8 is-offset-2">
+      <h3 className="title has-text-white">Login</h3>
+<hr className="login-hr"/>
+<p className="subtitle has-text-white">Please login to see our cool stuff!</p>
+<div className="box">
+  <div className="box">
+    <img src={kill} alt="logo"/>
   </div>
-  </Container>
+  <div className="title has-text-grey is-5">Please enter your email and password.</div>
+  <form>
+  <div className="field">
+    <div className="control">
+      <input className="input is-large" autofocus=""
+      label="Email"
+      placeholder="Email.."
+      name="email"
+      type="email"
+      value={values.email}
+      onChange={onChange}/>
+    </div>
+  </div>
+  <div className="field">
+    <div className="control">
+      <input className="input is-large" 
+      label="Password"
+      placeholder="Password.."
+      name="password"
+      type="password"
+      value={values.password}
+      onChange={onChange}/>
+    </div>
+  </div>
+</form>
+
+<button className="button is-block is-danger is-large is-fullwidth" onClick={onSubmit} >Login</button>
+</div>
+
+
+      </div>
+    </div>
+  </div>
+     
+    </div>
     )
 }

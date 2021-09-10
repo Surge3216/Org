@@ -1,12 +1,15 @@
-.back{
+.confess{
     background-color: black !important;
 }
-.players{
-    background-color: black !important;
+.profiles{
+    margin: 10px !important;
 }
-#horror{
+.houseguest{
+    width: 50%;
+    height: 170px;
+}
+
+.inst{
+    width: 50pc;
     background-color: black;
-}
-.bio{
-    margin: 10px;
 }

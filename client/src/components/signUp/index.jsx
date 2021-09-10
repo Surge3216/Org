@@ -1,13 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Button, Form } from 'semantic-ui-react';
-import axios from 'axios'
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
-
-import { UserContext } from '../../context/auth';
 import { useForm } from '../../util/hooks';
 
 function Register(props) {
-  const context = useContext(UserContext);
 
   const { onChange, onSubmit, values } = useForm(registerUser, {
     username: '',
@@ -19,27 +17,12 @@ function Register(props) {
     const userData ={
       username: values.username,
       email: values.email,
-      password: values.password
+      password: values.password,
     }
-
-    console.log(userData)
 
     axios.post('http://localhost:8080/api/auth/register', userData)
     .then(function(response){
-      const userLog = {
-        email: response.data.email,
-        password: userData.password
-      }
-      axios.post('http://localhost:8080/api/auth/login', userLog)
-      .then(function(response){
-        const userInfo = response.data
-        console.log(userInfo)
-        context.login(userInfo);
-        props.history.push('/');
-      })
-      .catch(err => {
-        console.log(err);
-    })
+      console.log(response)
     })
     .catch(err => {
       console.log(err);
@@ -53,7 +36,7 @@ function Register(props) {
 
   return (
     <div className="form-container">
-      <Form onSubmit={onSubmit} noValidate>
+      <Form  noValidate>
         <h1>Register</h1>
         <Form.Input
           label="Username"
@@ -79,9 +62,17 @@ function Register(props) {
           value={values.password}
           onChange={onChange}
         />
-        <Button type="submit" primary>
+        <Link
+        to="/login"
+        className = {
+         window.location.pathname === "/login"
+         ? "nav-link active"
+         : "nav-link"
+         }>
+        <Button type="submit" onClick={onSubmit} primary>
           Register
         </Button>
+        </Link>
       </Form>
     </div>
   );

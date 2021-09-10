@@ -1,63 +1,27 @@
 import "./sidebar.css";
-import { useContext } from 'react';
-import { UserContext } from '../../context/auth';
-import {
-  RssFeed,
-  Chat,
-  PlayCircleFilledOutlined,
-  Group,
-  Bookmark,
-  HelpOutline,
-  WorkOutline,
-  Event,
-  School,
-} from "@material-ui/icons";
 
 export default function Sidebar() {
-    const { user } = useContext(UserContext)
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
-        <ul className="sidebarList">
-          <li className="sidebarListItem">
-            <RssFeed className="sidebarIcon" />
-            <span className="sidebarListItemText">Feed</span>
-          </li>
-          <li className="sidebarListItem">
-            <Chat className="sidebarIcon" />
-            <span className="sidebarListItemText">Chats</span>
-          </li>
-          <li className="sidebarListItem">
-            <PlayCircleFilledOutlined className="sidebarIcon" />
-            <span className="sidebarListItemText">Videos</span>
-          </li>
-          <li className="sidebarListItem">
-            <Group className="sidebarIcon" />
-            <span className="sidebarListItemText">Groups</span>
-          </li>
-          <li className="sidebarListItem">
-            <Bookmark className="sidebarIcon" />
-            <span className="sidebarListItemText">Bookmarks</span>
-          </li>
-          <li className="sidebarListItem">
-            <HelpOutline className="sidebarIcon" />
-            <span className="sidebarListItemText">Questions</span>
-          </li>
-          <li className="sidebarListItem">
-            <WorkOutline className="sidebarIcon" />
-            <span className="sidebarListItemText">Jobs</span>
-          </li>
-          <li className="sidebarListItem">
-            <Event className="sidebarIcon" />
-            <span className="sidebarListItemText">Events</span>
-          </li>
-          <li className="sidebarListItem">
-            <School className="sidebarIcon" />
-            <span className="sidebarListItemText">Courses</span>
-          </li>
-        </ul>
-        <button className="sidebarButton">Show More</button>
-        <hr className="sidebarHr" />
+        <div className="sidebarList has-text-centered">
+          <h1 className="title">Keys to survival</h1>
+          <br/>
+          <h1>Next Challenge is on: </h1>
+          <br/>
+          <h1>Immunity Winner:</h1>
+          <br/>
+          <h1>Idols left in the game:</h1>
+          <br/>
+          <h1>Tribal Council:</h1>
+          <br/>
+          <h1>Players left:</h1>
+          <br/>
+          <h1>Last person voted out:</h1>
+          <br/>
+          <h1>Finale:</h1>
+          <br/>
+        </div>
       </div>
     </div>
   );

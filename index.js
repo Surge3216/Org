@@ -8,6 +8,7 @@ const morgan = require("morgan")
 const userRoute = require('./routes/user')
 const authRoute = require('./routes/auth')
 const postRoute = require('./routes/post')
+const bioRoute = require('./routes/bio')
 
 dotenv.config()
 
@@ -19,6 +20,7 @@ app.use(cors())
 app.use("/api/users", userRoute)
 app.use("/api/auth", authRoute)
 app.use("/api/posts", postRoute)
+app.use("/api/bio", bioRoute)
 
 app.get('/', (req, res)=>{
     res.send('welcome')
