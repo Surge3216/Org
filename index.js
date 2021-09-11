@@ -36,9 +36,9 @@ app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
 
-app.listen(8080, ()=>{
-     console.log('backend server is running')
-})
+app.listen(process.env.PORT || 8080, function(){
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+  });
 
 mongoose.connect(process.env.MONGO_URL, {
   useNewUrlParser: true,
