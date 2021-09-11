@@ -3,23 +3,26 @@
     height: calc(100vh - 50px);
     overflow-y: scroll;
     position: sticky;
-    top: 50px;
+    top: 2px;
     color:black;
-    background-color: red;
+    align-items: center;
   }
   
   ::-webkit-scrollbar {
     width: 5px;
   }
   ::-webkit-scrollbar-track {
-    background-color: #f1f1f1;
+    background-color: rgb(34,40,49);
   }
   ::-webkit-scrollbar-thumb {
-    background-color: rgb(179, 179, 179);
+    background-color: rgb(34,40,49);
   }
   
   .sidebarWrapper {
     padding: 20px;
+  }
+  .aboutSidebarWrapper {
+    padding: 2px;
   }
   
   .sidebarList {

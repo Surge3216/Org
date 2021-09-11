@@ -8,6 +8,7 @@ import "./style.css";
 
 function Navbar() {
   const { user, logout } = useContext(UserContext)
+  console.log(window.location.pathname)
 
         return(
             <div>
@@ -48,15 +49,14 @@ function Navbar() {
     <nav className="tabs is-boxed is-fullwidth">
       <div className="container">
         <ul>
-        {user.role === "viewer" && <li className={window.location.pathname === "/home" ? "nav-link is-active" : "nav-link"} >
+        {user.role === "viewer" && <li  >
          <Link
-              to="/"
-              className = {window.location.pathname === "/" 
-              }>Viewer Lounge
+              to="/"              
+              >Viewer Lounge
             </Link>
           </li>}
 
-          {user.role === "player" && <li className={window.location.pathname === "/" ? "nav-link is-active black" : "nav-link"}>
+          {user.role === "player" && <li >
             <Link
               to="/"
               >Confessional
@@ -67,7 +67,7 @@ function Navbar() {
           <li>
           <Link
             to="/players"
-            className = {window.location.pathname === "/players" ? "nav-link active" : "nav-link"}>
+            className = {window.location.pathname === "/players" ? "nav-link is-active" : "nav-link"}>
             Players
           </Link>
           
@@ -76,7 +76,7 @@ function Navbar() {
           <li>
           <Link
             to="/challenges"
-            className = {window.location.pathname === "/challenges" ? "nav-link active" : "nav-link"}>
+            className = {window.location.pathname === "/challenges" ? "nav-link is-active" : "nav-link"}>
             Challenge's
           </Link>
           </li>

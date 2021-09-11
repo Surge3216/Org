@@ -16,8 +16,8 @@ export default function PlayerPost(){
         setTimelineData(response.data)
       }).catch(err => {
         console.log(err);
-    },[])
-      })
+    })
+      },[setTimelineData, url])
 
       const timeline = timelineData.map((post)=>(
         <div className="post" key={post._id} >

@@ -20,13 +20,13 @@ export default function Login(props) {
       email: values.email,
       password: values.password
     }
-
+    console.log(userData)
     axios.post('http://localhost:8080/api/auth/login', userData)
     .then(function(response){
       const userInfo = response.data
       context.login(userInfo);
-      console.log(response, "hello loser")
       props.history.push('/');
+      window.location.reload(false);
     })
     .catch(err => {
       console.log(err);
@@ -41,7 +41,7 @@ export default function Login(props) {
 
 
     return (
-    <div className="hero is-fullheight is-primary">
+    <div className="hero is-fullheight is-Dark">
        <div className="hero-body">
     <div className="container has-text-centered">
       <div className="column is-8 is-offset-2">
@@ -78,7 +78,7 @@ export default function Login(props) {
   </div>
 </form>
 
-<button className="button is-block is-danger is-large is-fullwidth" onClick={onSubmit} >Login</button>
+<button className="button is-block is-Dark is-large is-fullwidth" onClick={onSubmit} >Login</button>
 </div>
 
 

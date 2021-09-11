@@ -1,10 +1,12 @@
 import "./post.css";
 import React, { useContext, useEffect, useState  } from 'react';
-import { MoreVert } from "@material-ui/icons";
-import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
- 
+import moment from 'moment';
+import Comments from "./comments";
+import Video from './video'
 import { UserContext } from '../../context/auth';
 import axios from "axios";
+import PostComment from "../postComment";
+
 
 export default function Post() {
   const { user } = useContext(UserContext)
@@ -17,45 +19,48 @@ export default function Post() {
     axios.get(url)
   .then(function(response){
     setTimelineData(response.data)
-    console.log("Car")
   }).catch(err => {
     console.log(err);
-}, [ url ])
-  })
+})
+  }, [ url ])
 
   const timeline = timelineData.map((post)=>(
-    <div className="post" key={post._id} >
-      <div className="postWrapper">
-        <div className="postTop">
-          <div className="postTopLeft">
-            <span className="postUsername">
-              {post.username}
-            </span>
-            <span className="postDate">{post.createdAt}</span>
-          </div>
-          <div className="postTopRight">
-            <MoreVert />
-          </div>
-        </div>
-        <div className="postCenter">
-          <span className="postText">{post.desc}</span>
-        </div>
-        <div className="postBottom">
-          <div className="postBottomLeft">
-            <div><ThumbUpAltIcon/> like </div>
-          </div>
-          <div className="postBottomRight">
-            <span className="postCommentText">{post.comment} comments</span>
-          </div>
-        </div>
+    <div className="mt-2" key={post._id} >
+    <div className="card">
+  <div className="card-content">
+    <div className="media">
+    <div className="media-left">
+        <figure className="image is-48x48">
+          <img src={post.userImg} alt={post.username}/>
+        </figure>
+      </div>
+      <div className="media-content">
+        <p className="title is-4">{post.username}</p>
+        
       </div>
     </div>
+
+    <div className="content">
+      {post.desc}
+      <br/>
+      <br/>
+      <time dateTime={moment(post.createdAt).format("MMM Do YY")} >{moment(post.createdAt).format("MMM Do YY")} - {moment(post.createdAt).fromNow(true)} ago</time>
+      
+    </div>
+    {post.video.length !== 0 && <Video url= { post.video }/>}
+  </div> 
+</div>
+
+    { post.comments.length !== 0 && <Comments id= {post._id }/>}
+    
+    
+    <PostComment postId={post._id} />
+</div>
   ))
 
   return (
-    <div>
+<div>
     {timeline}
     </div>
-   
-  );
+);
 }

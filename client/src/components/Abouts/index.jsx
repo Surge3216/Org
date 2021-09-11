@@ -19,37 +19,18 @@ export default function About(){
         },[id]);
 
         return(
-            <div className="aboutBar">
-            <div className="aboutBarWrapper ">
-                <div className="columns aboutBarListItem">
-                <div className="column is-12 has-text-centered">
-                    <div className="aboutMe ">
-                        <h2 className="title">{player.username}</h2>
-                        <img src={player.img} alt={player.username} />
-                        <br />
-                    </div>
-        
-          <div className="has-text-left aboutMe ">
-          <Link to="/edit/bio"
-          >
-          <button>Edit</button>
-          </Link>
-            <p className="title">About Me</p> 
-            <h6 className=""><strong>Home</strong></h6>
-            <p>{player.city}, {player.state}</p>
-            <br></br>
-            <h6 className=""><strong>Age</strong></h6>
-            <p>{player.age}</p>
-            <br></br>
-            <h6 className=""><strong>Why do you think you'll win?</strong></h6>
-            <p>{player.aboutMe}</p>
-            <br></br>
+          <div className="sidebar">
+      <div className=".aboutSidebarWrapper ">
+          <div className="bioCard" key={player._id}>
+          <img src={player.img} alt="Person" className="card__image"/>
+          <p className="card__name">{player.username},  {player.age}</p>
+          <p>{player.city}, {player.state}</p>
+          <Link to='/edit/bio'><button className="btn draw-border">Edit</button></Link>
+          <div className="bioP p-4">
+          <p>{player.aboutMe}</p>
           </div>
-    
           </div>
-                </div>
-            </div>
-    
+          </div>
         </div>
         )
 }

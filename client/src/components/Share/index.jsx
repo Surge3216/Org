@@ -1,9 +1,8 @@
 import "./share.css";
 import React, { useContext } from 'react';
-import photo from "./place.png";
 import { UserContext } from '../../context/auth';
 import { useForm } from '../../util/hooks';
-import axios from 'axios'
+import axios from 'axios';
 
 export default function Share() {
 
@@ -16,20 +15,21 @@ export default function Share() {
   
 
   const { user } = useContext(UserContext)
-  
+  console.log(user.img)
 
   function newPost(){
     const userPost = {
       userId: user.userId,
       username: user.username,
-      desc: values.desc
+      desc: values.desc,
+      userImg: user.img
     }
-    console.log(userPost)
 
     axios.post('http://localhost:8080/api/posts/', userPost)
     .then(function(response){
       console.log(response)
     })
+    window.location.reload(false)
   }
 
   function newPostCallback() {
@@ -40,23 +40,34 @@ export default function Share() {
       
     <div className="share">
       <form className="shareWrapper" onSubmit={onSubmit}>
-        <div className="shareTop" >
-          <img className="shareProfileImg" src={photo} alt="" />
-          <input
+      <div className="card">
+  <div className="card-content">
+    <div className="media">
+      <div className="media-left">
+        <figure className="image is-48x48">
+        <img className="shareProfileImg" src={user.img} alt="" />
+        </figure>
+      </div>
+      <div className="media-content">
+      <textarea
+          rows="4"
          placeholder="What's on your mind?"
-         className="shareInput"
+         className="shareInput pr-1"
          id="mypost"
          name="desc"
-         type="text"
          value={values.desc}
          onChange={onChange}
           />
-        </div>
-        <hr className="shareHr"/>
-
-            <button type="submit" className="shareButton">Share</button>
-
-      </form>
+          <button type="submit" className="button is-light">Post</button>
+      </div>
     </div>
+  </div>
+</div>
+      </form>
+
+      
+    </div>
+
+    
   );
 }

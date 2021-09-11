@@ -88,7 +88,7 @@ router.get("/timeline/:id", async (req, res) => {
     const userPosts = await Post.find({ userId: currentUser._id });
     const friendPosts = await Promise.all(
       currentUser.following.map((friendId) => {
-        return Post.find({ userId: friendId });
+        return Post.find({ userId: friendId }).sort({ createdAt: -1 });
       })
     );
     res.json(userPosts.concat(...friendPosts))
@@ -116,6 +116,17 @@ router.post("/:id/comment", async (req, res)=>{
       const newComment = await post.save();
       res.status(200).json(newComment)
   }catch (err) {
+    res.status(500).json(err);
+  }
+}),
+
+//get Comments
+router.get("/:id/comments", async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    const comments = post.comments
+    res.json(comments)
+  } catch (err) {
     res.status(500).json(err);
   }
 })

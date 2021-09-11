@@ -1,7 +1,6 @@
 import React from 'react';
-import { Button, Form } from 'semantic-ui-react';
+import kill from "./kill.png";
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 
 import { useForm } from '../../util/hooks';
 
@@ -27,7 +26,7 @@ function Register(props) {
     .catch(err => {
       console.log(err);
   })
-
+  window.location.href = "/login";
   }
 
   function registerUser() {
@@ -35,45 +34,62 @@ function Register(props) {
   }
 
   return (
-    <div className="form-container">
-      <Form  noValidate>
-        <h1>Register</h1>
-        <Form.Input
-          label="Username"
-          placeholder="Username.."
-          name="username"
-          type="text"
-          value={values.username}
-          onChange={onChange}
-        />
-        <Form.Input
-          label="Email"
-          placeholder="Email.."
-          name="email"
-          type="email"
-          value={values.email}
-          onChange={onChange}
-        />
-        <Form.Input
-          label="Password"
-          placeholder="Password.."
-          name="password"
-          type="password"
-          value={values.password}
-          onChange={onChange}
-        />
-        <Link
-        to="/login"
-        className = {
-         window.location.pathname === "/login"
-         ? "nav-link active"
-         : "nav-link"
-         }>
-        <Button type="submit" onClick={onSubmit} primary>
-          Register
-        </Button>
-        </Link>
-      </Form>
+    <div>
+      <div className="hero is-fullheight is-dark">
+       <div className="hero-body">
+    <div className="container has-text-centered">
+      <div className="column is-8 is-offset-2">
+      <h3 className="title has-text-white">Register</h3>
+<hr className="login-hr"/>
+<p className="subtitle has-text-white">Register to get in the Viewer Lounge</p>
+<div className="box">
+  <div className="box">
+    <img src={kill} alt="logo"/>
+  </div>
+  <div className="title has-text-grey is-5">Please enter your name, email and password.</div>
+  <form>
+  <div className="field">
+    <div className="control">
+      <input className="input is-large" 
+      label="Username"
+      placeholder="Name.."
+      name="username"
+      type="text"
+      value={values.username}
+      onChange={onChange}/>
+    </div>
+  </div>
+  <div className="field">
+    <div className="control">
+      <input className="input is-large" autofocus=""
+      label="Email"
+      placeholder="Email.."
+      name="email"
+      type="email"
+      value={values.email}
+      onChange={onChange}/>
+    </div>
+  </div>
+  <div className="field">
+    <div className="control">
+      <input className="input is-large" 
+      label="Password"
+      placeholder="Password.."
+      name="password"
+      type="password"
+      value={values.password}
+      onChange={onChange}/>
+    </div>
+  </div>
+</form>
+
+<button className="button is-block is-dark is-large is-fullwidth" onClick={onSubmit} >Register</button>
+</div>
+</div>
+</div>
+</div>
+      </div>
+        
     </div>
   );
 }

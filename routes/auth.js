@@ -50,6 +50,8 @@ router.post('/login', (req, res, next) => {
                 username: getUser.username,
                 userId: getUser._id,
                 role: getUser.role,
+                following: getUser.following,
+                img: getUser.profilePicture
             },
             'longer-secret-is-better',
             {

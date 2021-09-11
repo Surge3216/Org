@@ -6,7 +6,7 @@ export class Footer extends Component{
     render(){
         return(
             <div>
-                <footer className="footer">
+                <footer className="footer is-small">
   <div className="content has-text-centered">
     <p>
       <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed

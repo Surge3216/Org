@@ -22,12 +22,8 @@ const userSchema = new Schema({
     },
     profilePicture:{
         type: String,
-        default: ""
+        default: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
     },
-    coverPicture:{
-        type: String,
-        default: ""
-        },
     followers:{
         type:Array,
         default:[]
@@ -42,7 +38,7 @@ const userSchema = new Schema({
     },
     role:{
         type: String,
-        default:""
+        default:"viewer"
     },
     desc:{
         type:String,

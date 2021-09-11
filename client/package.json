@@ -12,6 +12,7 @@
     "bulma": "^0.9.3",
     "install": "^0.13.0",
     "jwt-decode": "^3.1.2",
+    "moment": "^2.29.1",
     "npm": "^7.22.0",
     "react": "^17.0.2",
     "react-bulma-components": "^4.0.7",

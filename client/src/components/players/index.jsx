@@ -1,12 +1,18 @@
-import React, { useEffect, useState} from 'react'
-import { Link } from "react-router-dom";
+import React, { useEffect, useState, useContext} from 'react';
 import "./style.css"
+import { UserContext } from '../../context/auth';
 import axios from 'axios'
 
 export default function Players()  {
-  
+  const {user} = useContext(UserContext)
+  const [userData, setUserData] = useState([])
   const [bioData, setBioData] = useState([])
+  const userId = {
+    userId: user.userId
+  }
+  
   useEffect(()=>{
+
     axios.get("http://localhost:8080/api/bio/players/all")
     .then(function (response) {
       setBioData(response.data)
@@ -15,26 +21,68 @@ export default function Players()  {
       console.log(err);
     })
   }, [])
+
+  function followHandler(bio){
+    const followURL = `http://localhost:8080/api/users/${bio}/follow`
+    axios.put(followURL, userId)
+    .then(function(response){
+      console.log(response)
+      updateFollowList()
+    }).catch(err =>{
+        console.log(err)
+    })
+}
+
+const unfollowHandler= (bio)=> {
+  const unfollowURL = `http://localhost:8080/api/users/${bio}/unfollow`
+  axios.put(unfollowURL, userId)
+  .then(function(response){
+    updateFollowList()
+  }).catch(err =>{
+      console.log(err)
+  })
+}
+
+const updateFollowList = () => {
+  axios.get(`http://localhost:8080/api/users/${user.userId}`)
+  .then(function(response){
+    console.log(response.data.following)
+    setUserData(response.data.following)
+  }).catch(err =>{
+    console.log(err)
+})
+}
   
 
 const bioLink = bioData.map((bio)=>(
-  <div className="column is-4 has-text-centered" key={bio.userId}>
-    <figure className ="image is-90x120 ">
-      <img src={bio.img} alt={bio.username} />
-      <Link
-      to={`/confessionals/${bio.userId}`}
-      
-      >{bio.username}</Link>
-    </figure>
+  <div className="bioCard" key={bio._id}>
+    <img src={bio.img} alt="Person" className="card__image"/>
+    <p className="card__name">{bio.username},  {bio.age}</p>
+    <p>{bio.city}, {bio.state}</p>
+      {userData.includes(bio.userId) ?
+      <button className="btn draw-border" id={bio.userId} onClick={() => unfollowHandler(bio.userId)}>Unfollow</button> 
+      : <button className="btn draw-border" id={bio.userId} onClick={() => followHandler(bio.userId)}>Follow</button>
+      }
+    <div className="bioP p-4">
+    <p>{bio.aboutMe}</p>
+    </div>
+
   </div>
 ))
 
 
 
 return(
-  <div className="columns inst"> 
-  {bioLink}
+<div className="bioContainer">
+  <div className="bioWrapper">
+    {bioLink}
   </div>
+</div>
+
+
+
+
+
 )
   
 

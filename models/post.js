@@ -15,23 +15,29 @@ const postSchema = new Schema(
       type: String,
       max: 2000,
     },
+    userImg: {
+      type: String,
+    },
     img: {
       type: String,
+      default: ""
+    },
+    video:{
+      type: String,
+      default: ""
     },
     likes: {
       type: Array,
       default: [],
     },
-    comments:{
-      type: Array,
-      default: [
+    comments:
+       [
         {
           body: String,
           username: String,
-          createdAt: String
+          userImage: String
         }
-      ]
-    }
+      ],
   },
   { timestamps: true }
 );

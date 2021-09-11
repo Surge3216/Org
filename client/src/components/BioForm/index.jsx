@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useForm } from '../../util/hooks';
 import { UserContext } from '../../context/auth'
 import axios from 'axios';
+
 export default function BioForm() {
     const {user} = useContext(UserContext)
     const { onChange, onSubmit, values } = useForm(updateBio, {

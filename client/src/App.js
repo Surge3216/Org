@@ -3,8 +3,8 @@ import EditBio from'./pages/EditBio/index'
 import Login from "./pages/login/login";
 import Register from "./pages/register/register";
 import Players from "./pages/players";
-import Profile from "./pages/profile";
-import Challenges from './pages/challenges'
+import Challenges from './pages/challenges';
+import NewChallenge from './pages/NewChallenge'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ProtectedRoute from "./context/protectedRoutes";
 import { AuthProvider } from "./context/auth";
@@ -22,9 +22,9 @@ function App() {
     <Route exact path="/login" component={Login}/>
     <Route exact path="/register" component={Register}/>
     <Route path="/edit/bio" component={EditBio}/>
+    <Route path="/newChallenge" component={NewChallenge}/>
     <ProtectedRoute exact path="/players" component={Players}/>
     <ProtectedRoute exact path="/challenges" component={Challenges}/>
-    <Route path={`/confessionals/:id`} render={props => <Profile {...props} /> } />
     </Switch>
     </Router>
     </AuthProvider>

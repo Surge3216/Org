@@ -9,6 +9,7 @@ const userRoute = require('./routes/user')
 const authRoute = require('./routes/auth')
 const postRoute = require('./routes/post')
 const bioRoute = require('./routes/bio')
+const challengeRoute = require('./routes/challenge')
 
 dotenv.config()
 
@@ -21,6 +22,7 @@ app.use("/api/users", userRoute)
 app.use("/api/auth", authRoute)
 app.use("/api/posts", postRoute)
 app.use("/api/bio", bioRoute)
+app.use("/api/challenge", challengeRoute )
 
 app.get('/', (req, res)=>{
     res.send('welcome')
