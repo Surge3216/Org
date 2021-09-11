@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 var cors = require('cors')
 const dotenv = require("dotenv");
+const PORT = process.env.PORT || 3000;
 
 const morgan = require("morgan")
 const userRoute = require('./routes/user')
@@ -36,9 +37,9 @@ app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
 
-app.listen(process.env.PORT || 8080, function(){
-    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
-  });
+app.listen(PORT, () => {
+    console.log(`Our app is running on port ${ PORT }`);
+});
 
 mongoose.connect(process.env.MONGO_URL, {
   useNewUrlParser: true,
