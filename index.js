@@ -32,6 +32,10 @@ app.get('/users', (req, res)=>{
     res.send('welcome to user page')
 })
 
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
+
 app.listen(8080, ()=>{
      console.log('backend server is running')
 })
