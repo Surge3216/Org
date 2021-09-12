@@ -1,9 +1,8 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-var cors = require('cors')
-const dotenv = require("dotenv");
-const { MONGODB } = require('./config')
+var cors = require('cors');
+// const { MONGODB } = require('./config')
 const morgan = require("morgan")
 const userRoute = require('./routes/user')
 const authRoute = require('./routes/auth')
@@ -11,8 +10,7 @@ const postRoute = require('./routes/post')
 const bioRoute = require('./routes/bio')
 const challengeRoute = require('./routes/challenge')
 const path = require("path")
-var MONGODB = process.env['MONGODB']
-dotenv.config()
+
 
 //middleWare
 app.use(express.json());
@@ -44,7 +42,7 @@ app.listen(process.env.PORT || 3000, function(){
   });
 
   mongoose
-  .connect(MONGODB, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.MONGODB, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('MongoDB Connected');
   })
