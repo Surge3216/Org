@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 var cors = require('cors')
 const dotenv = require("dotenv");
-
+const { MONGODB } = require('./config')
 const morgan = require("morgan")
 const userRoute = require('./routes/user')
 const authRoute = require('./routes/auth')
@@ -41,9 +41,14 @@ app.listen(process.env.PORT || 3000, function(){
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
   });
 
-mongoose.connect(process.env.MONGO_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-}, ()=>{
-    console.log('connected')
-});
+  mongoose
+  .connect(MONGODB, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log('MongoDB Connected');
+  })
+  .then((res) => {
+    console.log(`Server running`);
+  })
+  .catch(err => {
+    console.error(err)
+  })
