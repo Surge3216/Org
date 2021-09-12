@@ -10,7 +10,7 @@ export default function ChallengeCard() {
     
 
     useEffect(()=>{
-      axios.get('http://localhost:8080/api/challenge/get/all')
+      axios.get('/api/challenge/get/all')
       .then(function(response){
         setChallengeInfo(response.data)
         console.log(response.data)

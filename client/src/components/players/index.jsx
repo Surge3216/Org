@@ -13,7 +13,7 @@ export default function Players()  {
   
   useEffect(()=>{
 
-    axios.get("http://localhost:8080/api/bio/players/all")
+    axios.get("/api/bio/players/all")
     .then(function (response) {
       setBioData(response.data)
       console.log(response)
@@ -23,7 +23,7 @@ export default function Players()  {
   }, [])
 
   function followHandler(bio){
-    const followURL = `http://localhost:8080/api/users/${bio}/follow`
+    const followURL = `/api/users/${bio}/follow`
     axios.put(followURL, userId)
     .then(function(response){
       console.log(response)
@@ -34,7 +34,7 @@ export default function Players()  {
 }
 
 const unfollowHandler= (bio)=> {
-  const unfollowURL = `http://localhost:8080/api/users/${bio}/unfollow`
+  const unfollowURL = `/api/users/${bio}/unfollow`
   axios.put(unfollowURL, userId)
   .then(function(response){
     updateFollowList()
@@ -44,7 +44,7 @@ const unfollowHandler= (bio)=> {
 }
 
 const updateFollowList = () => {
-  axios.get(`http://localhost:8080/api/users/${user.userId}`)
+  axios.get(`/api/users/${user.userId}`)
   .then(function(response){
     console.log(response.data.following)
     setUserData(response.data.following)

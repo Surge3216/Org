@@ -19,7 +19,7 @@ function Register(props) {
       password: values.password,
     }
 
-    axios.post('http://localhost:8080/api/auth/register', userData)
+    axios.post('/api/auth/register', userData)
     .then(function(response){
       console.log(response)
     })

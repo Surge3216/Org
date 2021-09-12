@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 var cors = require('cors');
-// const { MONGODB } = require('./config')
+const { MONGODB } = require('./config')
 const morgan = require("morgan")
 const userRoute = require('./routes/user')
 const authRoute = require('./routes/auth')
@@ -11,7 +11,7 @@ const bioRoute = require('./routes/bio')
 const challengeRoute = require('./routes/challenge')
 const path = require("path")
 
-
+MONGO_URI = process.env.MONGODB || MONGODB
 //middleWare
 app.use(express.json());
 app.use(morgan('common'));
@@ -42,7 +42,7 @@ app.listen(process.env.PORT || 3000, function(){
   });
 
   mongoose
-  .connect(process.env.MONGODB, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('MongoDB Connected');
   })

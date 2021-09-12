@@ -8,7 +8,7 @@ export default function PlayerPost(){
     const { playerState } = useContext(PlayerContext)
     const [timelineData, setTimelineData] = useState([])
 
-    const url = `http://localhost:8080/api/posts/player/timeline/${playerState.userId}`
+    const url = `/api/posts/player/timeline/${playerState.userId}`
 
     useEffect(()=>{
         axios.get(url)

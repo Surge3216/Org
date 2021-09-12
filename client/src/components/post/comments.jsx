@@ -6,7 +6,7 @@ export default function Comments(props) {
     const [ comments, setComments ] = useState([])
 
     useEffect(()=>{
-        const url = `http://localhost:8080/api/posts/${props.id}/comments`
+        const url = `/api/posts/${props.id}/comments`
         axios.get(url)
         .then(function(response){
             setComments(response.data)

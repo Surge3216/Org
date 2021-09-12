@@ -19,7 +19,7 @@ export default function PostComment(props) {
           body: values.body,
           userImage: user.img
         }
-        axios.post(`http://localhost:8080/api/posts/${props.postId}/comment`, userComment)
+        axios.post(`/api/posts/${props.postId}/comment`, userComment)
         .then(function(response){
           console.log(response)
         })

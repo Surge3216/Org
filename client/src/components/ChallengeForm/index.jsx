@@ -20,7 +20,7 @@ export default function ChallengeForm() {
             coverImg: values.coverImg,
             madeAt: new Date().toISOString()
         }
-        axios.post("http://localhost:8080/api/challenge/", challengeInfo)
+        axios.post("/api/challenge/", challengeInfo)
         .then(function(response){
           console.log(response)
         })

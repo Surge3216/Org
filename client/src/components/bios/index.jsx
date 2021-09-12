@@ -12,8 +12,8 @@ export default function Box(){
     const userId = {
         userId: user.userId
     }
-    const followURL = `http://localhost:8080/api/users/${playerId}/follow`;
-    const unfollowURL = `http://localhost:8080/api/users/${playerId}/unfollow`
+    const followURL = `/api/users/${playerId}/follow`;
+    const unfollowURL = `/api/users/${playerId}/unfollow`
     
     const followHandler= ()=> {
         axios.put(followURL, userId)

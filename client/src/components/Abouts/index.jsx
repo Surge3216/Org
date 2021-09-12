@@ -9,7 +9,7 @@ export default function About(){
     const id = user.userId
 
     useEffect(()=>{
-        const url = `http://localhost:8080/api/bio/${id}`
+        const url = `/api/bio/${id}`
           axios.get(url)
           .then(function(response){
             setPlayer(response.data)

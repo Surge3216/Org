@@ -25,7 +25,7 @@ export default function Share() {
       userImg: user.img
     }
 
-    axios.post('http://localhost:8080/api/posts/', userPost)
+    axios.post('/api/posts/', userPost)
     .then(function(response){
       console.log(response)
     })

@@ -13,7 +13,7 @@ export default function Post() {
 
   const [timelineData, setTimelineData] = useState([])
 
-  const url = `http://localhost:8080/api/posts/timeline/${user.userId}`
+  const url = `/api/posts/timeline/${user.userId}`
   
   useEffect(()=>{
     axios.get(url)

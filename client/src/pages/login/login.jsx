@@ -21,7 +21,7 @@ export default function Login(props) {
       password: values.password
     }
     console.log(userData)
-    axios.post('http://localhost:8080/api/auth/login', userData)
+    axios.post('/api/auth/login', userData)
     .then(function(response){
       const userInfo = response.data
       context.login(userInfo);
