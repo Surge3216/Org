@@ -11,6 +11,7 @@ const postRoute = require('./routes/post')
 const bioRoute = require('./routes/bio')
 const challengeRoute = require('./routes/challenge')
 const path = require("path")
+var MONGODB = process.env['MONGODB']
 dotenv.config()
 
 //middleWare
