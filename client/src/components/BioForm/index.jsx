@@ -22,7 +22,7 @@ export default function BioForm() {
               state: values.state ,
               age: values.age
           }
-          axios.post( /api/bio/", bioInfo)
+          axios.post( "/api/bio/", bioInfo)
           .then(function(response){
             console.log(response)
           })
