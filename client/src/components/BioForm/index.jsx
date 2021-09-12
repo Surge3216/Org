@@ -35,7 +35,7 @@ export default function BioForm() {
           postBio()
       }
     return (
-        <div className= "black">
+        <div className= "black ">
 <div className="field">
   <label className="label">Age</label>
   <div className="control has-icons-left has-icons-right">
@@ -171,7 +171,7 @@ export default function BioForm() {
 
 <div className="field is-grouped">
   <div className="control">
-    <Link to="/" className="Link button is-link" onClick={onSubmit} >Submit</Link>
+    <button to="/" className=" button is-link" onClick={onSubmit} >Submit</button>
   </div>
   <div className="control">
     <Link 

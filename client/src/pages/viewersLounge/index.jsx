@@ -13,6 +13,7 @@ export default function Vl() {
         <div>
           <Navbar/>
           <div className= "homeContainer">
+
           <Sidebar/>
           <Feed />
           </div>

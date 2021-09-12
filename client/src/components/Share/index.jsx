@@ -27,9 +27,11 @@ export default function Share() {
 
     axios.post('/api/posts/', userPost)
     .then(function(response){
-      console.log(response)
+      window.location.reload(false)
+    }).catch(err => {
+      console.log(err)
     })
-    window.location.reload(false)
+    
   }
 
   function newPostCallback() {

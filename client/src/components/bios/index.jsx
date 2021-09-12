@@ -18,7 +18,7 @@ export default function Box(){
     const followHandler= ()=> {
         axios.put(followURL, userId)
         .then(function(response){
-            console.log(response)
+            window.location.href = "/"
         }).catch(err =>{
             console.log(err)
         })

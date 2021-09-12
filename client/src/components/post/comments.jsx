@@ -19,7 +19,7 @@ export default function Comments(props) {
     <article className="media p-2 pl-4">
       <figure className="media-left">
         <p className="image is-48x48">
-          <img src={comment.img} alt="placeholder"/>
+          <img src={comment.userImage} alt="placeholder"/>
         </p>
       </figure>
       <div className="media-content">

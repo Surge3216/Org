@@ -22,7 +22,7 @@ export default function ChallengeForm() {
         }
         axios.post("/api/challenge/", challengeInfo)
         .then(function(response){
-          console.log(response)
+          window.location.href = "/challenges"
         })
         .catch(err => {
           console.log(err);
@@ -34,7 +34,7 @@ export default function ChallengeForm() {
     }
 
     return (
-        <div className= "black">
+        <div className= "black p-5">
 <div className="field">
   <label className="label">Challenge Name</label>
   <div className="control has-icons-left has-icons-right">

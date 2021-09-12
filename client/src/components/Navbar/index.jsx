@@ -18,12 +18,17 @@ function Navbar() {
       <div className="container">
         <div className="navbar-brand">
           <span className="navbar-burger" data-target="navbarMenuHeroB">
-            <span></span>
+            <span><Link
+           to="/login"
+           className = "black"
+           name="logout" onClick={logout} >
+              Logout
+            </Link></span>
             <span></span>
             <span></span>
           </span>
         </div>
-        <div id="navbarMenuHeroB" className="navbar-menu">
+        <div id="navbarMenuHeroA" className="navbar-menu">
           <div className="navbar-end">
           <Link
            to="/login"
@@ -49,7 +54,7 @@ function Navbar() {
     <nav className="tabs is-boxed is-fullwidth">
       <div className="container">
         <ul>
-        {user.role === "viewer" && <li  >
+        {user.role === "viewer" && <li>
          <Link
               to="/"              
               >Viewer Lounge
@@ -64,19 +69,17 @@ function Navbar() {
           </li>}
           
           
-          <li>
-          <Link
+          {user.role === "viewer" && <li>
+           <Link
             to="/players"
-            className = {window.location.pathname === "/players" ? "nav-link is-active" : "nav-link"}>
+            >
             Players
-          </Link>
-          
-          
-          </li>
+          </Link>         
+          </li>}
           <li>
           <Link
             to="/challenges"
-            className = {window.location.pathname === "/challenges" ? "nav-link is-active" : "nav-link"}>
+            >
             Challenge's
           </Link>
           </li>

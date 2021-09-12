@@ -17,6 +17,7 @@ function Register(props) {
       username: values.username,
       email: values.email,
       password: values.password,
+      role: "viewer"
     }
 
     axios.post('/api/auth/register', userData)

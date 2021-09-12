@@ -21,7 +21,7 @@ export default function PostComment(props) {
         }
         axios.post(`/api/posts/${props.postId}/comment`, userComment)
         .then(function(response){
-          console.log(response)
+          window.location.reload(false)
         })
        
       }

@@ -6,14 +6,21 @@
 
 .bioWrapper{
   display: grid;
-  grid-template-columns: 299px 299px 299px 299px;
-  grid-gap: 40px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 4rem;
   justify-content: center;
   align-items: center;
   font-family: 'Baloo Paaji 2', cursive;
   padding: 20px;
 }
-
+@media only screen and (max-width: 768px) {
+  .bioWrapper{
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 20px;
+    grid-row-gap: 50px;
+  }
+}
 .bioCard {
   background-color: #222831;
   height: 37rem;
@@ -23,7 +30,9 @@
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.7);
   color: white;
+  
 }
+
 .bioP{
   overflow-y:scroll ;
 }
