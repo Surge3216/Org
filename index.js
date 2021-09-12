@@ -10,13 +10,14 @@ const authRoute = require('./routes/auth')
 const postRoute = require('./routes/post')
 const bioRoute = require('./routes/bio')
 const challengeRoute = require('./routes/challenge')
-
+const path = require("path")
 dotenv.config()
 
 //middleWare
 app.use(express.json());
 app.use(morgan('common'));
 app.use(cors())
+app.use(express.static(path.join(__dirname, "client", "build")))
 
 app.use("/api/users", userRoute)
 app.use("/api/auth", authRoute)
@@ -32,10 +33,10 @@ app.get('/users', (req, res)=>{
     res.send('welcome to user page')
 })
 
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
-if(process.env.NODE_ENV === "production") {
-    app.use(express.static("client/build"));
-  }
 
 app.listen(process.env.PORT || 3000, function(){
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
